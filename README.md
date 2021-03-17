@@ -5,7 +5,7 @@ The sample of rest api in kotlin
 
 ## Add dependencies to your project
 
-```
+```java
 dependencies {
 
     def lifecycle_version = "2.2.0"
@@ -25,7 +25,7 @@ dependencies {
 ```
 
 RetrofitClient.kt
-```
+```kotlin
 import com.example.mvvmkotlinexample.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -62,3 +62,18 @@ object RetrofitClient {
     }
 }
 ```
+
+ApiInterface.kt
+```kotlin
+import com.example.mvvmkotlinexample.model.ServicesSetterGetter
+import retrofit2.Call
+import retrofit2.http.GET
+
+interface ApiInterface {
+
+    @GET("services")
+    fun getServices() : Call<ServicesSetterGetter>
+
+}
+```
+
