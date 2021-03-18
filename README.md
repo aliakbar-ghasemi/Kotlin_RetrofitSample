@@ -5,7 +5,7 @@ The sample of rest api in kotlin
 
 ## Add dependencies to your project
 
-```java
+```kotlin
 dependencies {
 
     def lifecycle_version = "2.2.0"
@@ -35,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    const val MainServer = "http://api.drfriday.in/api/user/"
+    const val MainServer = ""
 
     val retrofitClient: Retrofit.Builder by lazy {
 
@@ -60,20 +60,6 @@ object RetrofitClient {
             .build()
             .create(ApiInterface::class.java)
     }
-}
-```
-
-ApiInterface.kt
-```kotlin
-import com.example.mvvmkotlinexample.model.ServicesSetterGetter
-import retrofit2.Call
-import retrofit2.http.GET
-
-interface ApiInterface {
-
-    @GET("services")
-    fun getServices() : Call<ServicesSetterGetter>
-
 }
 ```
 
