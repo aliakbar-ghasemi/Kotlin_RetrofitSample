@@ -8,9 +8,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val MainServer = "http://www.aliakbar-ghasemi.ir/api/"
+    private const val BASE_URL = "http://www.aliakbar-ghasemi.ir/api/"
 
-    private val retrofitClient: Retrofit.Builder by lazy {
+    private fun getRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build() //Doesn't require the adapter
+    }
+
+    val apiInterface: ApiInterface = getRetrofit().create(ApiInterface::class.java)
+
+    /*private val retrofitClient: Retrofit.Builder by lazy {
 
         val levelType: HttpLoggingInterceptor.Level = if (BuildConfig.DEBUG) {
             //if (BuildConfig.BUILD_TYPE.contentEquals("debug"))
@@ -26,7 +35,7 @@ object RetrofitClient {
         okhttpClient.addInterceptor(logging)
 
         Retrofit.Builder()
-            .baseUrl(MainServer)
+            .baseUrl(BASE_URL)
             .client(okhttpClient.build())
             .addConverterFactory(GsonConverterFactory.create())
     }
@@ -35,5 +44,6 @@ object RetrofitClient {
         retrofitClient
             .build()
             .create(ApiInterface::class.java)
-    }
+    }*/
+
 }
