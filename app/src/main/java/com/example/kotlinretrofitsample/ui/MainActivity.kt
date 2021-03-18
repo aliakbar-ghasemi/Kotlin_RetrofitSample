@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlinretrofitsample.R
+import com.example.kotlinretrofitsample.model.User
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,15 +19,20 @@ class MainActivity : AppCompatActivity() {
 
         btnClick.setOnClickListener {
 
-            mainActivityViewModel.getUser()!!.observe(this, Observer { serviceSetterGetter ->
-
-                val msg = serviceSetterGetter.message
-
-                lblResponse.text = msg
-
+            mainActivityViewModel.getUserList()?.observe(this, Observer { users ->
+                updateUI(users);
             })
 
         }
 
+    }
+
+    private fun updateUI(users: List<User>?) {
+        var data = "";
+        if (users != null) {
+            for (user in users)
+                data += user.name + "\n"
+        }
+        lblResponse.text = data
     }
 }

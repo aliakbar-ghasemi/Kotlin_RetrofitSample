@@ -3,16 +3,16 @@ package com.example.kotlinretrofitsample.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.kotlinretrofitsample.data.repository.MainActivityRepository
-import com.example.kotlinretrofitsample.model.ServicesSetterGetter
+import com.example.kotlinretrofitsample.data.repository.UserRepository
+import com.example.kotlinretrofitsample.model.User
 
 class MainActivityViewModel : ViewModel() {
 
-    var servicesLiveData: MutableLiveData<ServicesSetterGetter>? = null
+    var usersLiveData: MutableLiveData<List<User>>? = null
 
-    fun getUser() : LiveData<ServicesSetterGetter>? {
-        servicesLiveData = MainActivityRepository.getServicesApiCall()
-        return servicesLiveData
+    fun getUserList() : LiveData<List<User>>? {
+        usersLiveData = UserRepository.getUsersApiCall()
+        return usersLiveData
     }
 
 }
